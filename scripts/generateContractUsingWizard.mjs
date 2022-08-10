@@ -1,5 +1,5 @@
 import { erc20 } from '@openzeppelin/wizard'
-import { writeFileSync } from 'fs'
+import { writeFileSync, appendFileSync } from 'fs'
 
 const params = {
   name: 'ExampleToken',
@@ -14,4 +14,4 @@ const params = {
 const contract = erc20.print(params)
 
 writeFileSync(`./contracts/${params.name}.sol`, contract)
-writeFileSync(`./contract.json`, params.name)
+appendFileSync('.env', `\nCONTRACT_NAME=${params.name}`)

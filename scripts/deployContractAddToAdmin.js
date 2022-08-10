@@ -1,44 +1,34 @@
 const { ethers } = require('hardhat')
 const { AdminClient } = require('defender-admin-client')
-const { writeFileSync, readFileSync } = require('fs')
+const { appendFileSync, readFileSync } = require('fs')
+require('dotenv').config()
 
-const {name} = JSON.parse(readFileSync(`contract.json`))
+const NAME = process.env.CONTRACT_NAME
 const contractABI = JSON.stringify(
   JSON.parse(
-    readFileSync(`artifacts/contracts/${name}.sol/${name}.json`, 'utf8')
+    readFileSync(`artifacts/contracts/${NAME}.sol/${NAME}.json`, 'utf8')
   ).abi
 )
 
 async function main() {
-  require('dotenv').config()
   const adminClient = new AdminClient({
     apiKey: process.env.API_KEY,
     apiSecret: process.env.API_SECRET,
   })
 
-  const Contract = await ethers.getContractFactory(`${name}`)
+  const Contract = await ethers.getContractFactory(`${NAME}`)
   const contract = await Contract.deploy().then((f) => f.deployed())
 
   const contractDetails = {
     network: 'goerli',
     address: contract.address,
-    name: `${name}`,
+    name: NAME,
     abi: contractABI,
   }
   
   const newAdminContract = await adminClient.addContract(contractDetails)
-  writeFileSync(
-    `${contract}-details.json`,
-    JSON.stringify(
-      {
-        deployedAddress: contract.address,
-      },
-      null,
-      2
-    )
-  )
-
-  console.log(`Contract Deployed to Address: ${contract.address}\n`)
+  appendFileSync('.env', `\nCONTRACT_ADDRESS="${contract.address}"`)
+  console.log(`Contract Deployed to: ${contract.address}`)
 }
 
 if (require.main === module) {

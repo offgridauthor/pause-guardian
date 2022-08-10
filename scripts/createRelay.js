@@ -1,4 +1,5 @@
 const { RelayClient } = require('defender-relay-client');
+const {appendFileSync} = require('fs')
 
 async function run() {
   require('dotenv').config();
@@ -11,7 +12,9 @@ async function run() {
     minBalance: BigInt(1e17).toString(),
   };
   
-  await relayClient.create(requestParams);
+  const relayer = await relayClient.create(requestParams);
+  appendFileSync('.env', `\nRELAYER_ID="${relayer}`)
+  
 }
 
 run().catch((error) => {

@@ -1,16 +1,11 @@
 const { SentinelClient } = require('defender-sentinel-client')
 const { readFileSync } = require('fs')
 
-const { name } = JSON.parse(readFileSync(`contract.json`))
+const NAME = process.env.CONTRACT_NAME
 const ABI = JSON.stringify(
-  JSON.parse(readFileSync(`./artifacts/contracts/${name}.sol/${name}.json`)).abi
+  JSON.parse(readFileSync(`./artifacts/contracts/${NAME}.sol/${NAME}.json`)).abi
 )
-const ADDRESS = JSON.stringify(
-  JSON.parse(readFileSync(`${name}-details.json`)).address
-)
-const autotaskId = JSON.stringify(
-  JSON.parse(readFileSync(`autotask.json`)).AutotaskId
-)
+const ADDRESS = process.env.CONTRACT_ADDRESS
 
 async function main() {
   require('dotenv').config()
@@ -32,7 +27,7 @@ async function main() {
         expression: 'value > 200000e18',
       },
     ],
-    autotaskTrigger: autotaskId,
+    autotaskTrigger: process.env.AUTOTASK_ID,
     notificationChannels: [notificationChannels[0].notificationId],
   }
 
