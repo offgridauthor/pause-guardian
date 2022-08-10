@@ -1,0 +1,38 @@
+{
+  "name": "fastpausedemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node scripts/generateContractUsingWizard.js",
+    "deploy": "npx hardhat run scripts/deployContractAddToAdmin.js --network goerli",
+    "relay": "node scripts/createRelay.js",
+    "autotask": " && node scripts/createPauserAutotask.js",
+    "sentinel": "node scripts/createSentinel.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@openzeppelin/contracts-upgradeable": "^4.7.1",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "web3": "^1.7.4"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.0.6",
+    "@nomiclabs/hardhat-etherscan": "^3.1.0",
+    "@openzeppelin/contracts": "^4.7.0",
+    "@openzeppelin/hardhat-defender": "^1.7.0",
+    "@openzeppelin/wizard": "^0.1.1",
+    "chai": "^4.3.6",
+    "defender-admin-client": "^1.25.0",
+    "defender-autotask-client": "^1.25.0",
+    "defender-relay-client": "^1.26.1",
+    "defender-sentinel-client": "^1.26.0",
+    "ethers": "^5.6.9",
+    "hardhat": "^2.9.9"
+  }
+}
