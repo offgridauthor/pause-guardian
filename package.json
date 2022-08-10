@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate": "node scripts/generateContractUsingWizard.js",
+    "generate": "node scripts/generateContractUsingWizard.mjs",
     "deploy": "npx hardhat run scripts/deployContractAddToAdmin.js --network goerli",
     "relay": "node scripts/createRelay.js",
-    "autotask": " && node scripts/createPauserAutotask.js",
+    "autotask": "node scripts/createPauserAutotask.js",
     "sentinel": "node scripts/createSentinel.js"
   },
   "keywords": [],
@@ -23,9 +23,7 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.2",
     "@nomiclabs/hardhat-ethers": "^2.0.6",
-    "@nomiclabs/hardhat-etherscan": "^3.1.0",
     "@openzeppelin/contracts": "^4.7.0",
-    "@openzeppelin/hardhat-defender": "^1.7.0",
     "@openzeppelin/wizard": "^0.1.1",
     "chai": "^4.3.6",
     "defender-admin-client": "^1.25.0",

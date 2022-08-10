@@ -13,7 +13,8 @@ async function run() {
   };
   
   const relayer = await relayClient.create(requestParams);
-  appendFileSync('.env', `\nRELAYER_ID="${relayer}`)
+  console.log("Relayer created with ID ", relayer.relayerId)
+  appendFileSync('.env', `\nRELAYER_ID="${relayer.relayerId}"`)
   
 }
 

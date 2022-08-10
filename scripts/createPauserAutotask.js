@@ -12,7 +12,7 @@ async function main() {
   const pauserAutotask = {
     name: 'erc20 pauser autotask',
     encodedZippedCode: await autotaskClient.getEncodedZippedCodeFromFolder(
-      './src/pauser/autotasks'
+      './src/autotasks'
     ),
     trigger: {
       type: 'webhook',
@@ -22,7 +22,7 @@ async function main() {
   }
 
   const createdAutotask = await autotaskClient.create(pauserAutotask)
-  console.log(createdAutotask)
+  console.log('Created Autotask with ID: ', createdAutotask.autotaskId)
 
   appendFileSync('.env', `\nAUTOTASK_ID="${createdAutotask.autotaskId}"`)
 }
