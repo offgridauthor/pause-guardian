@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { SentinelClient } = require('defender-sentinel-client')
 const { readFileSync } = require('fs')
 
@@ -14,12 +15,15 @@ async function main() {
     apiSecret: process.env.API_SECRET,
   })
 
+  const notificationChannels = await client.listNotificationChannels();
+  const { notificationId, type } = notificationChannels[0];
+
   const requestParams = {
     type: 'BLOCK',
     network: 'goerli',
     name: 'High transfer volume detected - pausing contract',
     abi: ABI,
-    address: ADDRESS,
+    addresses: [ADDRESS],
     paused: false,
     eventConditions: [
       {

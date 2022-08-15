@@ -1,5 +1,5 @@
-import { erc20 } from '@openzeppelin/wizard'
 import { writeFileSync, appendFileSync } from 'fs'
+import { erc20 } from '@openzeppelin/wizard'
 
 const params = {
   name: 'ExampleToken',
