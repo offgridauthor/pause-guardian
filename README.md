@@ -2,7 +2,7 @@
 
 Demo repo showing a basic OpenZeppelin Defender "fast-pause" setup for automated incident response.
 
-[Defender](https://defender.openzeppelin.com) lets you configure [Sentinels](https://docs.openzeppelin.com/defender/sentinel) for monitoring transactions on your contracts, which you can configure to automatically fire a script you load into an [Autotask](https://docs.openzeppelin.com/defender/autotasks). As part of that script, you can send a pause transaction to your contracts via a [Relayer](https://docs.openzeppelin.com/defender/relay), which is a private key assigned to your team and managed by Defender in a secure keyvault, with a few goodies built in like nonce management, gas price estimation, and automatic retries.
+[Defender](https://defender.openzeppelin.com) lets you configure [Sentinels](https://docs.openzeppelin.com/defender/sentinel) for monitoring transactions on your contracts, which you can configure to automatically fire a script you load into an [Autotask](https://docs.openzeppelin.com/defender/autotasks). As part of that script, you can send a pause transaction to your contracts via a [Relayer](https://docs.openzeppelin.com/defender/relay), which is a private key assigned to your team and managed by Defender in a secure keyvault, with some goodies built in like EIP1559 support, nonce management, gas price estimation, and automatic retries.
 
 ## Structure
 
@@ -63,7 +63,7 @@ $ npm install
 
     `$ npm run relay`
 
-9. Assign the pauser role to the Relay via Defender UI. From the Admin dashboard, select the contract, then Admin Action. On the next screen, copy the value for the PAUSER role, select the grantRole() function, paste the PAUSER value and select the Relayer just created. Describe the Admin action and execute it.
+9. Assign the pauser role to the Relay via Defender UI. From the Admin dashboard, select the contract, then New Proposal --> Modify Access. On the next screen, select the PAUSER role from the dropdown, and supply the address of the Relayer just created. Select EOA as the execution strategy and select the address of the accout used to deploy the contract. Give the access proposal a title and execute it.
 
 10. Create an Autotask that runs `pause` on the deployed ERC20 contract using the Relayer.
 
