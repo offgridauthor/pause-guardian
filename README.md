@@ -4,6 +4,10 @@ Demo repo showing a basic OpenZeppelin Defender "fast-pause" setup for automated
 
 [Defender](https://defender.openzeppelin.com) lets you configure [Sentinels](https://docs.openzeppelin.com/defender/sentinel) for monitoring transactions on your contracts, which you can configure to automatically fire a script you load into an [Autotask](https://docs.openzeppelin.com/defender/autotasks). As part of that script, you can send a pause transaction to your contracts via a [Relayer](https://docs.openzeppelin.com/defender/relay), which is a private key assigned to your team and managed by Defender in a secure keyvault, with some goodies built in like EIP1559 support, nonce management, gas price estimation, and automatic retries.
 
+[Link to Video walkthrough](https://youtu.be/11erJye56jQ)
+
+[Link to Guide on OpenZeppelin Docs](https://docs.openzeppelin.com/defender/guide-pauseguardian)
+
 ## Structure
 
 - `contracts` : Standard pausable ERC20 contract implementing role-based access control, generated using [Wizard api](https://www.npmjs.com/package/@openzeppelin/wizard)
